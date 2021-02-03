@@ -1,0 +1,171 @@
+<div>
+    <header>
+        My Bookings
+      <span class="hed">Employee</span>
+      <span class="float"><i class="fas fa-bell" ></i>&nbsp;&nbsp;&nbsp; 
+        <i class="fas fa-user" ></i> 
+        </span>
+      
+    </header>
+    
+</div><br>
+<div >
+  <button type="button" class="btn btn-primary" style="float: right;" data-toggle="modal" data-target="#myModal" >Add New Employee</button>
+  <div class="modal" id="myModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+        
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Add New Employee</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          
+          <!-- Modal body -->
+          <div class="modal-body">
+              <div class="p-3">
+                  <form [formGroup]="detailsForm" (ngSubmit)="savedata()">
+                    <label>First Name</label>
+                    <input class="form-control"  formControlName="firstName">
+                    <label>Last Name</label>
+                    <input class="form-control"   formControlName="lastName">
+                    <label>ID</label>
+                    <input class="form-control"   type="number" formControlName="Id">
+                    <label>Gender Name</label>
+                    <select class="form-control" formControlName="gender">
+                      <option hidden selected value="">--Select Gender--</option>
+                      <option value="male">male</option>
+                      <option value="Female">female</option>
+                      
+                    </select>
+                    <label>Grade</label>
+                    <select class="form-control" formControlName="grade">
+                      <option hidden selected value="">--Select Grade--</option>
+                      <option value="18">3.1x</option>
+                      <option value="19">3.2x</option>
+                      <option value="20">20</option>
+            
+                    </select><br>
+                   
+                    
+                    <div class="btn-b">
+                    <button class="btn btn-primary" data-dismiss="modal">Cancel</button>&nbsp;&nbsp;
+                    <button class="btn btn-secondary" >Add</button>
+                  </div>
+                  </form>
+                </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div><br>
+
+<div >
+  <!-- <button type="button" class="btn btn-primary" style="float: right;" data-toggle="modal" data-target="#myModal" >Add New Employee</button> -->
+  <div  class="modal" id="myModal2">
+      <div class="modal-dialog">
+        <div class="modal-content">
+        
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Add New Employee</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          
+          <!-- Modal body -->
+          <div class="modal-body">
+              <div class="p-3">
+                  <form [formGroup]="detailsForm"(ngSubmit)="updatedata()" >
+                    <label>First Namedddd</label>
+                    <input class="form-control"  formControlName="firstName">
+                    <label>Last Name</label>
+                    <input class="form-control"   formControlName="lastName">
+                    <label>ID</label>
+                    <input class="form-control"   type="number" formControlName="Id">
+                    <label>Gender Name</label>
+                    <select class="form-control" formControlName="gender">
+                      <option hidden selected value="">--Select Gender--</option>
+                      <option value="male">male</option>
+                      <option value="Female">female</option>
+                      
+                    </select>
+                    <label>Grade</label>
+                    <select class="form-control" formControlName="grade">
+                      <option hidden selected value="">--Select Grade--</option>
+                      <option value="18">3.1x</option>
+                      <option value="19">3.2x</option>
+                      <option value="20">20</option>
+            
+                    </select><br>
+                   
+                    
+                    <div class="btn-b">
+                    <button class="btn btn-primary" data-dismiss="modal">Cancel</button>&nbsp;&nbsp;
+                    <button class="btn btn-secondary" >Update</button>
+                  </div>
+                  </form>
+                </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div><br>
+<div>
+  <p>Employee Data</p>
+  <table class="table table-bordered m-2">
+    <thead class="text-center">
+      
+        <th>Frist Name</th>
+        <th>Last Name</th>
+        <th>Id</th>
+        <th>Gender</th>
+        <th>Grade</th>
+        <th>Actions</th>
+    </thead>
+    <tbody class="text-center">
+      <tr *ngFor="let data of tabledataarray">
+    
+        <td>{{data.firstName}}</td>
+        <td>{{data.lastName}}</td>
+        <td>{{data.Id}}</td>
+        <td>{{data.gender}}</td>
+        <td>{{data.grade}}</td>
+        <td>
+          <!-- <div class="dropdown dropleft"> -->
+            <i class="fas fa-ellipsis-v " id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" (click)="moreAction()">
+              
+          </i>
+          <div class="dropdown-menu" >
+            <a class="dropdown-item" >View</a>
+            <a class="dropdown-item" (click)="showEditList(data)" data-toggle="modal" data-target="#myModal2">Edit</a>
+            <a class="dropdown-item" >Activate/Deactivate</a>
+            <a class="dropdown-item"  (click)="deletedata(data.id)">Delete</a>
+          </div>
+          
+          <!-- </div> -->
+        
+        <!-- <td>
+          <div class="showView" *ngIf="openModal" style="border: 1px solid blue; width: 150px; margin-right: 32px;">
+            <div>View</div>
+            <div style="cursor: pointer;" (click)="showEditList()">Edit</div>
+            <div>Actived/Deactive</div>
+            <div>Delete</div>
+          </div>
+        </td> -->
+      </tr>
+    </tbody>
+  </table>
+  <!-- <ngx-select-pagination
+    [totalItems]="100" 
+    [itemsPerPage]="10" 
+    [(ngModel)]="currentPage"
+    (pageChanged)="onPageChanged($event)">
+</ngx-select-pagination> -->
+<!-- <pagination-controls (pageChange)="p = $event" class="float-right"></pagination-controls> -->
+
+<footer>
+    <div>
+        <img src="\assets\per.png" class="logo" align="left" >
+        <span  class="text-logo"> Privacy Notice | Cookie Policy | Terms of Use © 2021 Persistent Systems</span>
+    </div>
+</footer>
